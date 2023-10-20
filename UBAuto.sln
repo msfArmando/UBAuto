@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UBAuto", "UBAuto\UBAuto.csproj", "{C602B218-F992-4D08-B207-0E4538E5FB54}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C602B218-F992-4D08-B207-0E4538E5FB54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C602B218-F992-4D08-B207-0E4538E5FB54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C602B218-F992-4D08-B207-0E4538E5FB54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C602B218-F992-4D08-B207-0E4538E5FB54}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC3A3C61-B699-4826-A10B-E74A08E62286}
+	EndGlobalSection
+EndGlobal
