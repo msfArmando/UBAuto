@@ -6,39 +6,44 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Edge;
+using System.ComponentModel.DataAnnotations;
 
 namespace UBAuto
 {
     public class Program
     {
         public static int LoginTries = 0;
+        public static string Cpf = string.Empty;
         public static void Main(string[] args)
         {
-            Automations auto = new Automations();
-            auto.OpenDriver();
+            List<string> listaCPFs = new List<string>
+        {
+            "35737691870", "33554507822", "26050431850", "4450232950",
+            "32175417824", "25221816881", "35445900851", "33441877837",
+            "15681075877", "11142760812", "5221555964", "18219822821",
+            "11063139424"
+        };
 
-            do
+            foreach (string cpf in listaCPFs)
             {
-                try
-                {
-                    Console.WriteLine("Corporação: ");
-                    var corp = Console.ReadLine();
-                    Console.WriteLine("Email: ");
-                    var email = Console.ReadLine();
-                    Console.WriteLine("Senha: ");
-                    var senha = Console.ReadLine();
+                Automations auto = new Automations();
+                auto.OpenDriver();
 
-                    auto.Login(corp, email, senha);
-
-                    Console.WriteLine("Ticket: ");
-                    var ticketNum = Console.ReadLine();
-                    auto.SearchTicket(ticketNum);
-                }
-                catch (Exception)
+                do
                 {
-                    LoginTries++;
-                }
-            } while (LoginTries < 10);
+                    try
+                    {
+                        //Cpf = Console.ReadLine();
+                        Cpf = cpf;
+                        Automations.Login(Cpf);
+
+                    }
+                    catch (Exception)
+                    {
+                        LoginTries++;
+                    }
+                } while (LoginTries < 10);
+            }
         }
     }
 }
