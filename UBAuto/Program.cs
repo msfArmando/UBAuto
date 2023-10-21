@@ -16,33 +16,39 @@ namespace UBAuto
         public static string Cpf = string.Empty;
         public static void Main(string[] args)
         {
-            List<string> listaCPFs = new List<string>
-        {
-            "35737691870", "33554507822", "26050431850", "4450232950",
-            "32175417824", "25221816881", "35445900851", "33441877837",
-            "15681075877", "11142760812", "5221555964", "18219822821",
-            "11063139424"
-        };
-
-            foreach (string cpf in listaCPFs)
+            try
             {
+                List<string> listaCPFs = new List<string>();
                 Automations auto = new Automations();
-                auto.OpenDriver();
 
-                do
+                for (int i = 0; i < 300; i++)
                 {
-                    try
-                    {
-                        //Cpf = Console.ReadLine();
-                        Cpf = cpf;
-                        Automations.Login(Cpf);
+                    listaCPFs.Add(auto.SendPostRequest());
+                }
 
-                    }
-                    catch (Exception)
+                foreach (string cpf in listaCPFs)
+                {
+                    auto.SendPostRequest();
+                    auto.OpenDriver();
+
+                    do
                     {
-                        LoginTries++;
-                    }
-                } while (LoginTries < 10);
+                        try
+                        {
+                            Cpf = cpf;
+                            Automations.Login(Cpf);
+                            continue;
+                        }
+                        catch (Exception)
+                        {
+                            LoginTries++;
+                        }
+                    } while (LoginTries < 10);
+                }
+            }
+            catch (Exception)
+            {
+
             }
         }
     }

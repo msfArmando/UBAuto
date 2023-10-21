@@ -18,7 +18,7 @@ namespace UBAuto
         public static string SumPath = "//div[contains(@class, 'instruction')]/span";
         public static string ResultInput = "//ion-input[contains(@type, 'number')]/input";
         public static string ResultButton = "//*[@id=\"ion-overlay-1\"]/app-modal-login/ion-content/div/ion-button";
-        public static string RegisterButton = "//ion-button[contains(., 'CONFIRMAR RESPOSTA')]";
+        public static string RegisterButton = "//ion-button[contains(., 'INSCREVA-SE')]";
 
         public static string LogOutButton = "//ion-icon[contains(@name, 'log-out-outline')]";
 
@@ -35,7 +35,7 @@ namespace UBAuto
         public static string Interesses = "//ion-select[contains(@placeholder, 'Forma de ingresso')]";
         public static string SelecionarInteresse = "//button[contains(., 'Vestibular Online')]";
         public static string Agendamento = "//ion-select[contains(@placeholder, 'Agendamentos')]";
-        public static string SelectAgendamento = "//button[contains(., 'MEGA VESTIBULAR TESTE CENTRAL')]";
+        public static string SelectAgendamento = "//button[contains(., '[22/10] MEGA VESTIBULAR')]";
         public static string PrimeiraOpcao = "//ion-select[contains(@formcontrolname, 'CURSOUM')]";
         public static string SegundaOpcao = "//ion-select[contains(@formcontrolname, 'CURSODOIS')]";
         public static string BtnDireito = "//button[contains(., 'DIREITO')]";
