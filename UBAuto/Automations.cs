@@ -44,14 +44,27 @@ namespace UBAuto
 
                 TryFindElementByXpathWithAttempts(5, 2, Paths.NumRG).SendKeys("10199738");
                 TryFindElementByXpathWithAttempts(5, 2, Paths.DataEmissao).SendKeys("21122021");
-                TryFindElementByXpathWithAttempts(5, 2, Paths.OrgaoEmissor).SendKeys("SDS");
-                TryFindElementByXpathWithAttempts(5, 2, Paths.Interesses).Click();
+
+                var orgaoEmissor = TryFindElementByXpathWithAttempts(5, 2, Paths.OrgaoEmissor);
+                ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView(true);", orgaoEmissor);
+                orgaoEmissor.SendKeys("SDS");
+
+                var interesses = TryFindElementByXpathWithAttempts(5, 2, Paths.Interesses);
+                ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView(true);", interesses);
+                TryClickElement(5, 5, interesses);
 
                 var ingresso = TryFindElementByXpathWithAttempts(5, 2, Paths.SelecionarInteresse);
+                ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView(true);", ingresso);
                 TryClickElement(5, 5, ingresso);
-                TryFindElementByXpathWithAttempts(5, 2, Paths.Agendamento).Click();
-                var agendamento = TryFindElementByXpathWithAttempts(5, 2, Paths.SelectAgendamento);
+
+                var agendamento = TryFindElementByXpathWithAttempts(5, 2, Paths.Agendamento);
+                ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView(true);", agendamento);
                 TryClickElement(5, 5, agendamento);
+
+                Thread.Sleep(2000);
+
+                var selectAgendamento = TryFindElementByXpathWithAttempts(5, 2, Paths.SelectAgendamento);
+                TryClickElement(5, 5, selectAgendamento);
 
                 var primeiraOpcao = TryFindElementByXpathWithAttempts(5, 2, Paths.PrimeiraOpcao);
                 ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView(true);", primeiraOpcao);
@@ -74,6 +87,8 @@ namespace UBAuto
 
                 TryFindElementByXpathWithAttempts(5, 2, Paths.SelectNoite).Click();
                 TryFindElementByXpathWithAttempts(5, 2, Paths.BtnOk).Click();
+
+                Thread.Sleep(1000);
 
                 var checkBox = TryFindElementByXpathWithAttempts(5, 2, Paths.CheckBox);
                 ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView(true);", checkBox);
@@ -109,7 +124,11 @@ namespace UBAuto
                     var btnBackToLogin = TryFindElementByXpathWithAttempts(5, 5, Paths.ReturnToLoginButton);
                     TryClickElement(5, 5, btnBackToLogin);
                 }
-                Login(cpf);
+                else if (Driver.PageSource.Contains("Bem-vindo (a)") ||
+                    Driver.PageSource.Contains("Seja bem-vindo(a) a trilha UNIBRA"))
+                {
+                    ProcessoVestibular();
+                }
             }
             catch (Exception ex)
             {
@@ -119,7 +138,8 @@ namespace UBAuto
 
         public static bool VerifyLogin()
         {
-            if(TryFindElementByXpathWithAttemptsThrowNull(5, 2, Paths.NullUserError) != null)
+            if(TryFindElementByXpathWithAttemptsThrowNull(5, 2, Paths.LogOutButton) == null &&
+                !Driver.PageSource.Contains("Seja bem-vindo(a) a trilha UNIBRA"))
             {
                 return false;
             }
@@ -140,6 +160,24 @@ namespace UBAuto
 
             TryFindElementByXpathWithAttempts(5, 2, Paths.ResultInput).SendKeys(result.ToString());
             TryFindElementByXpathWithAttempts(5, 2, Paths.ResultButton).Click();
+        }
+
+        public static void ProcessoVestibular()
+        {
+            if (TryFindElementByXpathWithAttemptsThrowNull(7, 1, Paths.BtnContinue) != null)
+            {
+                var btnContinue = TryFindElementByXpathWithAttempts(5, 1, Paths.BtnContinue);
+                TryClickElement(5, 5, btnContinue);
+            }
+
+            if (TryFindElementByXpathWithAttempts(7, 1, Paths.BtnFazerProva) != null)
+            {
+                var btnFazerProva = TryFindElementByXpathWithAttempts(5, 1, Paths.BtnFazerProva);
+                TryClickElement(5, 5, btnFazerProva);
+            }
+
+            List<IWebElement> Questions = new List<IWebElement>();
+            Questions = (List<IWebElement>)TryFindElementByXpathWithAttemptsThrowNull(5, 2, Paths.Questions);
         }
 
         public void Dispose()

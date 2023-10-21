@@ -25,7 +25,7 @@ namespace UBAuto
                     Thread.Sleep(secs*1000);
                 }
             } while (times < tries);
-            throw new Exception("Elemento não encontrado");
+            throw new Exception("Elemento não encontrado.");
         }
 
         public static IWebElement TryFindElementByXpathWithAttemptsThrowNull(int tries, int secs, string path)
@@ -63,6 +63,24 @@ namespace UBAuto
                 }
             } while (times < tries);
             throw new Exception("Element in not clickable.");
+        }
+
+        public static IWebElement TryFindElementsWithAttempts(int tries, int secs, string path)
+        {
+            var times = 0;
+            do
+            {
+                try
+                {
+                    return (IWebElement)Driver.FindElements(By.XPath(path));
+                }
+                catch (Exception)
+                {
+                    times++;
+                    Thread.Sleep(secs * 1000);
+                }
+            } while (times < tries);
+            throw new Exception("Elementos não encontrados.");
         }
 
         public static void WaitForLoadPage(string path)

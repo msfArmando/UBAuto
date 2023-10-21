@@ -18,9 +18,9 @@ namespace UBAuto
         public static string SumPath = "//div[contains(@class, 'instruction')]/span";
         public static string ResultInput = "//ion-input[contains(@type, 'number')]/input";
         public static string ResultButton = "//*[@id=\"ion-overlay-1\"]/app-modal-login/ion-content/div/ion-button";
-        public static string RegisterButton = "/html/body/app-root/ion-app/ion-router-outlet/app-login/ion-content/div/div/div/form/ion-button[2]";
+        public static string RegisterButton = "//ion-button[contains(., 'CONFIRMAR RESPOSTA')]";
 
-        public static string NullUserError = "//span[contains(., 'Informe seu CPF para efetuar o login')]";
+        public static string LogOutButton = "//ion-icon[contains(@name, 'log-out-outline')]";
 
         public static string NomeCompleto = "//input[contains(@placeholder, 'Nome Completo')]";
         public static string Cpf = "//ion-input[contains(@formcontrolname, 'CPF')]/input[contains(@placeholder, '000.000.000-00')]";
@@ -35,7 +35,7 @@ namespace UBAuto
         public static string Interesses = "//ion-select[contains(@placeholder, 'Forma de ingresso')]";
         public static string SelecionarInteresse = "//button[contains(., 'Vestibular Online')]";
         public static string Agendamento = "//ion-select[contains(@placeholder, 'Agendamentos')]";
-        public static string SelectAgendamento = "//button[contains(., 'Mega Vestibular Teste')]";
+        public static string SelectAgendamento = "//button[contains(., 'MEGA VESTIBULAR TESTE CENTRAL')]";
         public static string PrimeiraOpcao = "//ion-select[contains(@formcontrolname, 'CURSOUM')]";
         public static string SegundaOpcao = "//ion-select[contains(@formcontrolname, 'CURSODOIS')]";
         public static string BtnDireito = "//button[contains(., 'DIREITO')]";
@@ -46,5 +46,9 @@ namespace UBAuto
         public static string CheckBox = "//ion-checkbox[contains(@formcontrolname, 'IDTERMOSACEITE')]";
         public static string FinalizarInscBtn = "//ion-button[contains(., 'Finalizar Inscrição')]";
         public static string ReturnToLoginButton = "//ion-button[contains(., 'Ir para login')]";
+
+        public static string BtnContinue = "//ion-button[contains(., 'Continuar')]";
+        public static string BtnFazerProva = "//ion-button[contains(., 'FAZER PROVA')]";
+        public static string Questions = "//section[contains(@class, 'questao')]/div[contains(@class, 'alternativas')]/div[contains(@class, 'alternativa')]/label/span";
     }
 }
